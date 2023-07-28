@@ -5,14 +5,14 @@ const router = express.Router();
 let quoteList = {};
 
 // ??? GET request returns information
-router.get('/quotes', (req, res) => {
+router.get('/', (req, res) => {
     console.log('GET Request made for /quotes');
     // Send back the list of quotes!
     res.send(quoteList);
 });
 
 // ??? POST request save user input
-router.post('/', (req, res) => {
+router.post('/add', (req, res) => {
     console.log('POST Request made for /quotes');
     // Any data we send from the client is available
     // as a property of req.body.
@@ -25,11 +25,12 @@ router.post('/', (req, res) => {
 // PUT request update information
 
 // ??? DELETE request to remove information
-app.delete('/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     console.log(req.params.id); // Similar to req.body
     const deleteIndex = Number(req.params.id);
     quoteList = quoteList.filter((quote, index) => index !== deleteIndex);
     res.sendStatus(200); // Success!
 });
 
+module.exports = router
 // ???
